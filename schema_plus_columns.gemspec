@@ -8,8 +8,7 @@ Gem::Specification.new do |gem|
   gem.version       = SchemaPlus::Columns::VERSION
   gem.authors       = ["ronen barzel"]
   gem.email         = ["ronen@barzel.org"]
-  gem.summary       = %q{TODO: Write a short summary. Required.}
-  gem.description   = %q{TODO: Write a longer description. Optional.}
+  gem.summary       = %q{Adds useful accessors to ActiveRecord's Column object.}
   gem.homepage      = "https://github.com/SchemaPlus/schema_plus_columns"
   gem.license       = "MIT"
 

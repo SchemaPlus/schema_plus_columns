@@ -5,7 +5,7 @@
 
 # SchemaPlus::Columns
 
-TODO: Write a gem description
+SchemaPlus::Columns adds some useful accessors the objects returned by ActiveRecord's [`Model.columns`](http://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/PostgreSQL/SchemaStatements.html#method-i-columns) database introspection query.
 
 SchemaPlus::Columns is part of the [SchemaPlus](https://github.com/SchemaPlus/) family of Ruby on Rails extension gems.
 
@@ -30,6 +30,35 @@ which creates a Railtie to that will insert SchemaPlus::Columns appropriately in
 
 <!-- SCHEMA_DEV: TEMPLATE INSTALLATION - end -->
 
+## Usage
+
+SchemaPlus::Columns makes these accessors available:
+
+#### `column.indexes`
+
+Returns a list of index definitions for each index that refers to this column.  Returns an empty list if there are no such indexes.
+
+#### `column.unique?`
+
+Returns true if the column is in a unique index.
+
+#### `column.unique_scope`
+
+If the column is in a unique index, returns a list of names of other columns in the index.  Returns an empty list if it's a single-column index. Returns nil if the column is not in a unique index.
+
+#### `column.case_sensitive?`
+
+Returns true if the column is in one or more indexes that are case sensitive.  *Requires the index definitions to respond to `:case_sensitive?`* -- i.e. Only works with `schema_plus_pg_indexes` having been loaded.
+
+#### `column.required_on`
+
+Returns an indicator of the circumstance in which the column must have a value:
+
+* `nil` If the column may be null
+* `:save` If the column has no default value
+* `:update` Otherwise
+
+
 ## Compatibility
 
 SchemaPlus::Columns is tested on:
@@ -40,13 +69,10 @@ SchemaPlus::Columns is tested on:
 
 <!-- SCHEMA_DEV: MATRIX - end -->
 
-## Usage
-
-TODO: Write usage instructions here
 
 ## History
 
-* 0.1.0 - Initial release
+* 0.1.0 - Initial release, extracted from SchemaPlus 1.x
 
 ## Development & Testing
 
@@ -83,7 +109,7 @@ Some things to know about to help you develop and test:
   ActiveRecord's behavior.  If that API is missing something you need for
   your contribution, please head over to
   [schema_plus_core](https://github/SchemaPlus/schema_plus_core) and open
-  an issue or pull request.  
+  an issue or pull request.
 
 <!-- SCHEMA_DEV: TEMPLATE USES SCHEMA_PLUS_CORE - end -->
 
@@ -93,6 +119,5 @@ Some things to know about to help you develop and test:
   [schema_monkey](https://github.com/SchemaPlus/schema_monkey) client,
   using [schema_monkey](https://github.com/SchemaPlus/schema_monkey)'s
   convention-based protocols for extending ActiveRecord and using middleware stacks.
-  For more information see [schema_monkey](https://github.com/SchemaPlus/schema_monkey)'s README.
 
 <!-- SCHEMA_DEV: TEMPLATE USES SCHEMA_MONKEY - end -->
