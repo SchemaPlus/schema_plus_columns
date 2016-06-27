@@ -64,6 +64,7 @@ SchemaPlus::Columns is tested on:
 
 ## History
 
+* 0.1.2 - Missing require
 * 0.1.1 - Explicit gem dependencies
 * 0.1.0 - Initial release, extracted from SchemaPlus 1.x
 
