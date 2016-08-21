@@ -22,7 +22,10 @@ describe "Column" do
              when SchemaDev::Rspec::Helpers.sqlite3?
                { "sql_type" => "varchar" }
              end
-      expect(JSON.parse(@login.to_json)).to include(type.merge("name" => "login"))
+      expect(JSON.parse(@login.to_json)).to include(
+        "name" => "login",
+        "sql_type_metadata" => a_hash_including(type)
+      )
     end
   end
 
