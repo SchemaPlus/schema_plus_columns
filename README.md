@@ -67,6 +67,7 @@ SchemaPlus::Columns is tested on:
 
 ## Release Notes
 
+* 0.3.0 - AR 5.2
 * 0.2.0 - AR 5.1 Support
 * 0.1.3 - AR 5.0 Support
 * 0.1.2 - Missing require
