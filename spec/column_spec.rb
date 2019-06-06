@@ -89,6 +89,22 @@ describe "Column" do
       end
     end
 
+    context "if string index" do
+      before(:each) do
+        create_table(User, :login => { :index => {}})
+        add_index(User, 'lower(login)', name: 'index_users_on_lower_login', unique: true)
+        @login = User.columns.find{|column| column.name == "login"}
+      end
+
+      it "should report unique" do
+        expect(@login).to be_unique
+      end
+
+      it "should report an empty unique scope" do
+        expect(@login.unique_scope).to eq([])
+      end
+    end
+
     context "with case insensitive" do
       before(:each) do
         create_table(User, :login => { :index => {}})
@@ -157,6 +173,15 @@ describe "Column" do
         end
       end
       model.reset_column_information
+    end
+  end
+
+  def add_index(model, index, options = {})
+    migration.suppress_messages do
+      unless migration.index_exists?(model.table_name, name: index)
+        migration.add_index model.table_name, index, options
+        model.reset_column_information
+      end
     end
   end
 

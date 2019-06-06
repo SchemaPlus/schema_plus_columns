@@ -13,7 +13,9 @@ module SchemaPlus::Columns
         # refers to this column.  Returns an empty list if there are no
         # such indexes.
         def indexes
-          @indexes ||= @model.indexes.select{|index| index.columns.include? self.name}
+          @indexes ||= @model.indexes.select{|index| index.columns.include? self.name}.each do |index|
+            index.instance_variable_set(:@columns, index.columns.is_a?(Array) ? index.columns : [index.columns])
+          end
         end
 
         # If the column is in a unique index, returns a list of names of other columns in
