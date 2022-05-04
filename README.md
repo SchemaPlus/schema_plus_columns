@@ -67,12 +67,13 @@ SchemaPlus::Columns is tested on:
 
 ## Release Notes
 
-* 0.3.0 - AR 5.2
-* 0.2.0 - AR 5.1 Support
-* 0.1.3 - AR 5.0 Support
-* 0.1.2 - Missing require
-* 0.1.1 - Explicit gem dependencies
-* 0.1.0 - Initial release, extracted from SchemaPlus 1.x
+* **1.0.0** - Add AR 6, Drop AR < 5.2, Drop Ruby < 2.5, add Ruby 3.0
+* **0.3.0** - AR 5.2
+* **0.2.0** - AR 5.1 Support
+* **0.1.3** - AR 5.0 Support
+* **0.1.2** - Missing require
+* **0.1.1** - Explicit gem dependencies
+* **0.1.0** - Initial release, extracted from SchemaPlus 1.x
 
 ## Development & Testing
 
