@@ -153,7 +153,7 @@ describe "Column" do
     migration.suppress_messages do
       migration.create_table model.table_name, :force => :cascade do |t|
         columns_with_options.each_pair do |column, options|
-          t.send :string, column, options
+          t.string column, **options
         end
       end
       model.reset_column_information
