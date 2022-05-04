@@ -93,7 +93,7 @@ describe "Column" do
       before(:each) do
         create_table(User, :login => { :index => {}})
         User.reset_column_information
-        @column = User.columns.find(&its.name == "login")
+        @column = User.columns.find { |it| it.name == "login" }
       end
 
       context "index", :mysql => :skip do
@@ -142,7 +142,7 @@ describe "Column" do
     end
 
     it "respects array: true" do
-      column = User.columns.find(&its.name == "alpha")
+      column = User.columns.find { |it| it.name == "alpha" }
       expect(column.array).to be_truthy
     end
   end
