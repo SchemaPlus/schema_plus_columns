@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SchemaPlus::Columns
   module Middleware
     module Model

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'schema_plus/indexes'
 
 require_relative 'columns/active_record/connection_adapters/column'
