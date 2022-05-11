@@ -8,6 +8,10 @@ module SchemaPlus::Columns
       # SchemaPlus::Index adds several methods to Column
       #
       module Column
+        # AR 6.1+ freezes the columns.  Temporary hack until I figure a better way to set the model
+        def freeze
+          self
+        end
 
         attr_writer :model # model assigned set by Middleware::Model::Columns
 
@@ -15,7 +19,7 @@ module SchemaPlus::Columns
         # refers to this column.  Returns an empty list if there are no
         # such indexes.
         def indexes
-          @indexes ||= @model.indexes.select{|index| index.columns.include? self.name}
+          @model.indexes.select{|index| index.columns.include? self.name}
         end
 
         # If the column is in a unique index, returns a list of names of other columns in
@@ -64,4 +68,3 @@ module SchemaPlus::Columns
     end
   end
 end
-
