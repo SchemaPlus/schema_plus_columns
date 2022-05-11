@@ -97,7 +97,7 @@ describe "Column" do
       context "index", :mysql => :skip do
 
         it "reports column as case insensitive" do
-          allow(User.indexes.first).to receive(:case_sensitive?).and_return(false);
+          allow(User.indexes.first).to receive(:case_sensitive?).and_return(false)
           expect(@column).not_to be_case_sensitive
         end
       end
@@ -105,9 +105,15 @@ describe "Column" do
       context "database", :mysql => :only do
 
         # make sure we haven't broken mysql's method
+        # mysql determines case insensitivity its own way
         it "reports column as case insensitive" do
-          allow(migration).to receive(:collation).and_return("utf8_unicode_ci") # mysql determines case insensitivity its own way
+          allow(@column).to receive(:collation).and_return("utf8_unicode_ci")
           expect(@column).not_to be_case_sensitive
+        end
+
+        it "reports column as case sensitive" do
+          allow(@column).to receive(:collation).and_return("utf8_unicode")
+          expect(@column).to be_case_sensitive
         end
       end
     end
