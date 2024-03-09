@@ -8,6 +8,7 @@ activerecord:
     - 6.0
     - 6.1
     - 7.0
+    - 7.1
 db:
     - mysql2
     - sqlite3
